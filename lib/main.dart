@@ -1,12 +1,9 @@
-
 import 'package:flutter/material.dart';
 import 'ui/screens/home/home_screen.dart';
 import 'ui/theme/theme.dart';
+import 'main_dev.dart';
 
-void main() {
-   runApp(const BlaBlaApp()); 
-}
-
+void main() => mainDev();
 
 class BlaBlaApp extends StatelessWidget {
   const BlaBlaApp({super.key});
