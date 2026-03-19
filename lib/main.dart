@@ -13,7 +13,7 @@ class BlaBlaApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: blaTheme,
-      home: Scaffold(body: HomeScreen()),
+      home: const Scaffold(body: HomeScreen()),
     );
   }
 }

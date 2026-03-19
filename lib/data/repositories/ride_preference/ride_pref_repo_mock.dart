@@ -1,19 +1,24 @@
 import '../../../model/ride_pref/ride_pref.dart';
-import '../../../services/ride_prefs_service.dart';
 import 'ride_pref_repo.dart';
 
 class RidePrefRepoMock implements RidePrefRepo {
-  @override
-  Future<List<RidePreference>> getHistory() async =>
-      Future.value(RidePrefsService.preferenceHistory);
+  RidePreference? _selectedPreference;
+  final List<RidePreference> _preferenceHistory = [];
 
   @override
-  Future<RidePreference?> getSelectedPreference() async =>
-      Future.value(RidePrefsService.selectedPreference);
+  int get maxAllowedSeats => 8;
 
   @override
-  Future<void> savePreference(RidePreference pref) async {
-    RidePrefsService.selectPreference(pref);
-    return Future.value();
+  List<RidePreference> get preferenceHistory => List.unmodifiable(_preferenceHistory);
+
+  @override
+  RidePreference? get selectedPreference => _selectedPreference;
+
+  @override
+  void selectPreference(RidePreference preference) {
+    if (preference != _selectedPreference) {
+      _selectedPreference = preference;
+      _preferenceHistory.add(preference);
+    }
   }
 }

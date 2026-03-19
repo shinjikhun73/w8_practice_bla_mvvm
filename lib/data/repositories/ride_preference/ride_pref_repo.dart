@@ -1,7 +1,9 @@
 import '../../../model/ride_pref/ride_pref.dart';
 
 abstract class RidePrefRepo {
-  Future<RidePreference?> getSelectedPreference();
-  Future<void> savePreference(RidePreference pref);
-  Future<List<RidePreference>> getHistory();
+  int get maxAllowedSeats;
+  RidePreference? get selectedPreference;
+  List<RidePreference> get preferenceHistory;
+
+  void selectPreference(RidePreference preference);
 }

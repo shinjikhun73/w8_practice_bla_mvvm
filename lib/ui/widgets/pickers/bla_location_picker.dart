@@ -1,4 +1,5 @@
-import 'package:blabla/main_common.dart';
+import 'package:provider/provider.dart';
+import '../../../data/repositories/location/location_repo.dart';
 import 'package:blabla/ui/widgets/display/bla_divider.dart';
 import 'package:flutter/material.dart';
 
@@ -47,8 +48,7 @@ class _BlaLocationPickerState extends State<BlaLocationPicker> {
     super.didChangeDependencies();
     if (!_isInit) {
       _isInit = true;
-      RepositoryProvider.of(context)
-          .locationRepository
+      context.read<LocationRepo>()
           .getLocations()
           .then((locations) {
         if (mounted) {
