@@ -5,16 +5,18 @@ import 'package:blabla/model/ride_pref/ride_pref.dart';
 
 class RideRepoMock implements RideRepo {
   @override
-  Future<List<Ride>> findRides(RidePreference preference) async {
-    return Future.value(fakeRides);
+  List<Ride> getRidesFor(RidePreference preference) {
+    return fakeRides.where((ride) =>
+        ride.departureLocation == preference.departure &&
+        ride.arrivalLocation == preference.arrival).toList();
   }
 
   @override
-  Future<Ride?> getRideById(String id) async {
+  Ride? getRideById(String id) {
     try {
-      return Future.value(fakeRides.firstWhere((r) => r.toString() == id));
+      return fakeRides.firstWhere((r) => r.toString() == id);
     } catch (e) {
-      return Future.value(null);
+      return null;
     }
   }
 }
